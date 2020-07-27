@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Layout, Menu, Typography, Form, Input, Button } from "antd";
+import { Layout, Menu, Typography, Form, Input, Button, Divider } from "antd";
 import "./Join.css";
+import { Redirect } from "react-router";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
@@ -22,6 +23,8 @@ function Join() {
 	const [room, setRoom] = useState("");
 	const [password, setPassword] = useState("");
 
+	const [redirect, setRedirect] = useState(false);
+
 	const handleNameChange = (event) => {
 		setName(event.target.value);
 	}
@@ -35,7 +38,11 @@ function Join() {
 	}
 
 	const handleSubmit = async () => {
-		console.log(name, password);
+		setRedirect(true);
+	}
+
+	if(redirect) {
+		return <Redirect push to={`/chat?name=${name}&room=${room}`} />
 	}
 
 	return (
@@ -52,6 +59,7 @@ function Join() {
 						<Title level={1} >Chatzo</Title>
 					</div>
 					<div className="join-form">
+						<Divider>Join Room</Divider>
 						<Form {...layout}
 							name="room-info"
 							onFinish={handleSubmit}
