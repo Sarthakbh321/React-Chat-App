@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import qs from "query-string";
 import io from "socket.io-client";
+import {Input} from "antd";
 
 let socket;
 
 function Chat(props) {
 	const [name, setName] = useState("");
 	const [room, setRoom] = useState("");
+
+	const [message, setMessage] = useState("");
+	const [messages, setMessages] = useState([]);
+
 	const ENDPOINT = "localhost:5000";
 
 	useEffect(() => {
@@ -21,10 +26,6 @@ function Chat(props) {
 			if(error) alert(error);
 		} );
 
-		socket.on("message", ({user, text}) => {
-			console.log(user, text);
-		})
-
 		return () => {
 			socket.emit("disconnect");
 			socket.off();
@@ -32,8 +33,31 @@ function Chat(props) {
 
 	}, [ENDPOINT, props.location.search])
 
+	useEffect(() => {
+		socket.on("message", (message) => {
+			setMessages([...messages, message]);
+		})
+	}, [messages]);
+
+	const sendMessage = (event) => {
+		event.preventDefault();
+
+		if(message) {
+			socket.emit("sendMessage", message, () => {
+				setMessage("");
+			})
+		}
+	}
+
+	console.log(message, messages);
+
 	return (
-		<h1>Hello from chat!</h1>
+		<div className="container">
+			<Input 
+				value={message} 
+				onChange={(event) => setMessage(event.target.value)} 
+				onKeyPress={(event) => event.key === "Enter"? sendMessage(event): null}/>
+		</div>
 	)
 }
 
