@@ -1,0 +1,19 @@
+.container {
+	height: 100vh;
+}
+
+.join-head {
+	justify-self: flex-start !important;
+}
+
+.join-page {
+	background-color: #fff;
+	padding: 24px;
+	height: 80vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	flex-direction: column;
+}
