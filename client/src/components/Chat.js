@@ -17,9 +17,16 @@ function Chat(props) {
 		setName(query.name);
 		setRoom(query.room);
 
-		socket.emit("join", {name: query.name, room: query.room});
+		socket.emit("join", {name: query.name, room: query.room}, () => {
+			
+		} );
 
-		console.log(socket);
+		return () => {
+			socket.emit("disconnect");
+			socket.off();
+			
+		}
+
 	}, [ENDPOINT, props.location.search])
 
 	return (
