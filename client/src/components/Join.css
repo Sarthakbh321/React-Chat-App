@@ -1,12 +1,23 @@
 .container {
-	height: 100vh;
+	min-height: 100vh;
+	min-width: 100%;
 }
 
 
 .join-page {
 	background-color: #fff;
 	padding: 24px;
-	height: 80vh;
+
+	min-width: 100%;
+	min-height: 70vh;
+	height: 100%;
+
+	margin-bottom: 0 !important;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .join-head {
@@ -20,7 +31,7 @@
 	align-items: center;
 
 	flex-direction: column;
-	height: 100%;
+	flex: 1;
 
 	padding-bottom: 5%;
 }

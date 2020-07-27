@@ -19,11 +19,17 @@ const tail = {
 
 function Join() {
 	const [name, setName] = useState("");
+	const [room, setRoom] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleNameChange = (event) => {
 		setName(event.target.value);
 	}
+
+	const handleRoomChange = (event) => {
+		setRoom(event.target.value);
+	}
+
 	const handlePasswordChange = (event) => {
 		setPassword(event.target.value);
 	}
@@ -50,10 +56,15 @@ function Join() {
 							name="room-info"
 							onFinish={handleSubmit}
 						>
+							<Form.Item label="Name" name="name"
+								rules={[{ required: true, message: "Name is required!" }]}
+							>
+								<Input onChange={handleNameChange} value={name} />
+							</Form.Item>
 							<Form.Item label="Room Code" name="roomCode"
 								rules={[{ required: true, message: "Room Code is required!" }]}
 							>
-								<Input onChange={handleNameChange} value={name} />
+								<Input onChange={handleRoomChange} value={room} />
 							</Form.Item>
 							<Form.Item label="Password" name="password">
 								<Input.Password onChange={handlePasswordChange} value={password} />
