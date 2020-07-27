@@ -42,22 +42,27 @@ function Join() {
 			</Header>
 			<Content style={{ padding: '0 50px' }}>
 				<div className="join-page" style={{ margin: '25px 0' }}>
-					<Title level={1} className="join-head">Chatzo</Title>
-					<Form {...layout}
-						name="room-info"
-					>
-						<Form.Item label="Room Code" name="roomCode"
-							rules={[{ required: true, message: "Room Code is required!" }]}
+					<div className="join-head">
+						<Title level={1} >Chatzo</Title>
+					</div>
+					<div className="join-form">
+						<Form {...layout}
+							name="room-info"
+							onFinish={handleSubmit}
 						>
-							<Input onChange={handleNameChange} value={name} />
-						</Form.Item>
-						<Form.Item label="Password" name="password">
-							<Input onChange={handlePasswordChange} value={password} />
-						</Form.Item>
-						<Form.Item {...tail}>
-							<Button type="primary" onClick={handleSubmit}>Submit</Button>
-						</Form.Item>
-					</Form>
+							<Form.Item label="Room Code" name="roomCode"
+								rules={[{ required: true, message: "Room Code is required!" }]}
+							>
+								<Input onChange={handleNameChange} value={name} />
+							</Form.Item>
+							<Form.Item label="Password" name="password">
+								<Input.Password onChange={handlePasswordChange} value={password} />
+							</Form.Item>
+							<Form.Item {...tail}>
+								<Button type="primary" htmlType="submit">Submit</Button>
+							</Form.Item>
+						</Form>
+					</div>
 				</div>
 			</Content>
 			<Footer style={{ textAlign: "center" }}>Made by: Sarthak Bharadwaj</Footer>
