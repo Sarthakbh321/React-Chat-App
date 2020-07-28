@@ -3,7 +3,8 @@ import qs from "query-string";
 import io from "socket.io-client";
 import {Input, Layout, Button} from "antd";
 import "./Chat.css";
-import {RightOutlined} from "@ant-design/icons";
+import {RightOutlined, CloseOutlined} from "@ant-design/icons";
+import Messages from "./Messages/Messages";
 
 let socket;
 
@@ -37,11 +38,13 @@ function Chat(props) {
 
 	}, [ENDPOINT, props.location.search])
 
+	
 	useEffect(() => {
 		socket.on("message", (message) => {
-			setMessages([...messages, message]);
-		})
-	}, [messages]);
+			setMessages((messages) => [...messages, message])
+		});
+	}, []);
+
 
 	const sendMessage = (event) => {
 		event.preventDefault();
@@ -53,18 +56,19 @@ function Chat(props) {
 		}
 	}
 
-	console.log(message, messages);
-
 	return (
 		<Layout className="chat-container">
 			<Sider>
 				
 			</Sider>
 			<Layout>
-				<Header className="chat-heading">{room}</Header>
-				<Content className="chat-content">Chat Space</Content>
+				<Header className="chat-heading">{room} <a href="/" className="chat-close"><CloseOutlined /></a></Header>
+				<Content className="chat-content">
+					<Messages messages={messages}/>
+				</Content>
 				<Footer className="chat-input">
 					<Input 
+						placeholder="Enter a message..."
 						value={message} 
 						onChange={(event) => setMessage(event.target.value)} 
 						onKeyPress={(event) => event.key === "Enter"? sendMessage(event): null}

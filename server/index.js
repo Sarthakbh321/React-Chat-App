@@ -32,16 +32,19 @@ io.on("connection", (socket) => {
 
 	socket.on("sendMessage", (message, callback) => {
 		const user = getUser(socket.id);
-
+	
 		io.to(user.room).emit("message", { user: user.name, text: message});
-
 		callback();
 	});
 
 	socket.on("disconnect", () => {
 		console.log("User left :(");
+		const user = removeUser({id: socket.id});
 
-		removeUser({id: socket.id});
+		if(user){
+			io.to(user.room).emit("message", { user: "admin", text: `${user.name} has left!` });
+		}
+
 	})
 });
 
