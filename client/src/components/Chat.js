@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import qs from "query-string";
 import io from "socket.io-client";
-import {Input} from "antd";
+import {Input, Layout, Button} from "antd";
+import "./Chat.css";
+import {RightOutlined} from "@ant-design/icons";
 
 let socket;
+
+const {Header, Content, Footer, Sider} = Layout;
 
 function Chat(props) {
 	const [name, setName] = useState("");
@@ -52,12 +56,23 @@ function Chat(props) {
 	console.log(message, messages);
 
 	return (
-		<div className="container">
-			<Input 
-				value={message} 
-				onChange={(event) => setMessage(event.target.value)} 
-				onKeyPress={(event) => event.key === "Enter"? sendMessage(event): null}/>
-		</div>
+		<Layout className="chat-container">
+			<Sider>
+				
+			</Sider>
+			<Layout>
+				<Header className="chat-heading">{room}</Header>
+				<Content className="chat-content">Chat Space</Content>
+				<Footer className="chat-input">
+					<Input 
+						value={message} 
+						onChange={(event) => setMessage(event.target.value)} 
+						onKeyPress={(event) => event.key === "Enter"? sendMessage(event): null}
+					/>
+					<Button icon={<RightOutlined />} type="primary" shape="circle" className="send-button"/>
+				</Footer>
+			</Layout>
+		</Layout>
 	)
 }
 

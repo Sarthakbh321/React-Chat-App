@@ -1,0 +1,22 @@
+.chat-container {
+	height: 100vh;
+}
+
+.chat-heading {
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5rem !important;
+}
+
+.chat-content {
+	background-color: rgb(209, 209, 209);
+}
+
+.chat-input {
+	display: flex;
+}
+
+.send-button {
+	margin-left: 5%;
+}
