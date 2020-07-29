@@ -43,6 +43,11 @@ function Chat(props) {
 		socket.on("message", (message) => {
 			setMessages((messages) => [...messages, message])
 		});
+
+		socket.on("roomDate", (data) => {
+			console.log(data);
+		});
+
 	}, []);
 
 

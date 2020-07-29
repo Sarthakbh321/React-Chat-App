@@ -78,7 +78,7 @@ function Join() {
 								<Input.Password onChange={handlePasswordChange} value={password} />
 							</Form.Item>
 							<Form.Item {...tail}>
-								<Button type="primary" htmlType="submit">Submit</Button>
+								<Button type="primary" htmlType="submit">Join</Button>
 							</Form.Item>
 						</Form>
 					</div>
