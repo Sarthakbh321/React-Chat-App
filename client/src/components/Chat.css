@@ -20,6 +20,7 @@
 
 .chat-content {
 	background-color: rgb(209, 209, 209);
+	overflow: scroll;
 }
 
 .chat-input {
