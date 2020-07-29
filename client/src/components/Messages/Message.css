@@ -1,0 +1,46 @@
+.msg-container {
+	display: flex;
+	padding: 5px 10px;
+}
+.msg-box {
+	min-height: 60px;
+	max-width: 40% !important;
+	border-radius: 50px;
+
+	display: inline-block;
+	padding: 10px 25px;
+
+	text-overflow: clip;
+}
+
+.flex-end {
+	justify-content: flex-end;
+}
+
+.flex-start {
+	justify-content: flex-start;
+}
+
+.msg-body {
+	display: inline-block;
+	vertical-align: center;
+}
+
+.bg-blue {
+	background-color: rgb(25, 144, 255);
+	color: white;
+}
+
+.bg-light {
+	background-color:white;
+	color: black;
+}
+
+.msg-name {
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+.msg-text {
+	margin-bottom: 0;
+}

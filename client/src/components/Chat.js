@@ -38,7 +38,7 @@ function Chat(props) {
 
 	}, [ENDPOINT, props.location.search])
 
-	
+
 	useEffect(() => {
 		socket.on("message", (message) => {
 			setMessages((messages) => [...messages, message])
@@ -58,13 +58,13 @@ function Chat(props) {
 
 	return (
 		<Layout className="chat-container">
-			<Sider>
+			<Sider width="30%">
 				
 			</Sider>
 			<Layout>
 				<Header className="chat-heading">{room} <a href="/" className="chat-close"><CloseOutlined /></a></Header>
 				<Content className="chat-content">
-					<Messages messages={messages}/>
+					<Messages messages={messages} user={name}/>
 				</Content>
 				<Footer className="chat-input">
 					<Input 

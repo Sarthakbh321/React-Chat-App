@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import Message from "./Message";
 
 function Messages(props) {
 	const divref = useRef(null);
@@ -11,7 +12,7 @@ function Messages(props) {
 	return (
 		<ScrollToBottom>
 			{props.messages.map((message) => (
-				<p>{message.text}</p>
+				<Message message={message} user={props.user}/>
 			))}
 			<div ref={divref} />
 		</ScrollToBottom>
