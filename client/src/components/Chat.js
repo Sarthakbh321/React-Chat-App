@@ -58,7 +58,7 @@ function Chat(props) {
 
 	return (
 		<Layout className="chat-container">
-			<Sider width="30%">
+			<Sider width="30%" collapsible>
 				
 			</Sider>
 			<Layout>
