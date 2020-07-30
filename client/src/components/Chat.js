@@ -5,6 +5,7 @@ import {Input, Layout, Button} from "antd";
 import "./Chat.css";
 import {RightOutlined, CloseOutlined} from "@ant-design/icons";
 import Messages from "./Messages/Messages";
+import RoomList from './RoomList';
 
 let socket;
 
@@ -16,6 +17,8 @@ function Chat(props) {
 
 	const [message, setMessage] = useState("");
 	const [messages, setMessages] = useState([]);
+
+	const [userList, setUserList] = useState([]);
 
 	const ENDPOINT = "https://chat-app-sarthak.herokuapp.com/";
 
@@ -45,7 +48,7 @@ function Chat(props) {
 		});
 
 		socket.on("roomDate", (data) => {
-			console.log(data);
+			setUserList(data.data);
 		});
 
 	}, []);
@@ -63,8 +66,8 @@ function Chat(props) {
 
 	return (
 		<Layout className="chat-container">
-			<Sider width="30%" collapsible>
-				
+			<Sider width="30%" collapsible collapsedWidth={0}>
+				<RoomList users={userList}/>
 			</Sider>
 			<Layout>
 				<Header className="chat-heading">{room} <a href="/" className="chat-close"><CloseOutlined /></a></Header>
